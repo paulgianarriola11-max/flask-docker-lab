@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask Docker App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Flask Docker App</h1>
+        <p>MongoDB CRUD Application</p>
+
+        <!-- Authentication -->
+        <div class="auth-section">
+
+            <h2>Account</h2>
+
+            <input
+                type="text"
+                id="username"
+                placeholder="Username"
+            >
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Password"
+            >
+
+            <div class="auth-buttons">
+                <button onclick="register()">Register</button>
+                <button onclick="login()">Login</button>
+            </div>
+
+            <p id="authMessage"></p>
+
+        </div>
+
+        <hr>
+
+        <!-- CRUD -->
+        <h2>Items</h2>
+
+        <div class="add-item">
+            <input
+                type="text"
+                id="itemName"
+                placeholder="Enter item name"
+            >
+
+            <button onclick="addItem()">Add Item</button>
+        </div>
+
+        <button class="refresh" onclick="loadItems()">
+            Refresh
+        </button>
+
+        <div id="items"></div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

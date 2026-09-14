@@ -1,0 +1,30 @@
+services:
+  flask:
+    build: .
+    container_name: flask_app
+    environment:
+      MONGO_URI: mongodb://mongo:27017/
+    expose:
+      - "5000"
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:7
+    container_name: flask_mongo
+    volumes:
+      - mongo_data:/data/db
+
+  nginx:
+    image: nginx:alpine
+    container_name: flask_nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./frontend:/usr/share/nginx/html:ro
+    depends_on:
+      - flask
+
+volumes:
+  mongo_data:
