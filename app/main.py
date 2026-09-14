@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from crud import (
     init_db,
@@ -8,7 +8,7 @@ from crud import (
     register_user,
     login_user
 )
-app = Flask(__name__)
+app = Flask(__name__, static_folder="/frontend", static_url_path="")
 CORS(app)
 
 db = init_db()
@@ -16,9 +16,7 @@ db = init_db()
 
 @app.route("/")
 def home():
-    return jsonify({
-        "message": "Flask App is running!"
-    })
+    return send_from_directory("/frontend", "index.html")
 
 
 @app.route("/items", methods=["GET"])
